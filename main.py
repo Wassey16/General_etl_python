@@ -1,7 +1,7 @@
 import pandas as pd
 import psycopg2
 column_names = ['word', 'PoS', 'l1', 'l2', 'l3', 'l4', 'l5', 'l6']
-data = pd.read_csv('alaa.vert', sep='\t', names=column_names, skiprows=4)
+data = pd.read_csv('sample.vert', sep='\t', names=column_names, skiprows=4)
 df=data[['word','PoS']]
 df = df.dropna(subset=['PoS'])
 x = df.drop_duplicates(subset='PoS', keep='first')
