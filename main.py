@@ -99,27 +99,26 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 
 # Create table
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS sample_pos (
-        id SERIAL PRIMARY KEY,
-        word VARCHAR(255),
-        PoS VARCHAR(255),
-        category VARCHAR(255),
-        type VARCHAR(255),
-        person VARCHAR(255),
-        gen VARCHAR(255),
-        num VARCHAR(255),
-        neclass VARCHAR(255),
-        nesubclass VARCHAR(255),
-        degree VARCHAR(255),
-        possessorpers VARCHAR(255),
-        possessornum VARCHAR(255),
-        zcase VARCHAR(255),
-        polite VARCHAR(255),
-        mood VARCHAR(255),
-        tense VARCHAR(255),
-        non_positional VARCHAR(255)
-    )
+cursor.execute("""CREATE TABLE pos
+(
+	id				SERIAL	NOT	NULL PRIMARY KEY,
+​
+	category		CHAR	NOT	NULL,
+	type			CHAR,
+	degree			CHAR,
+	gen				CHAR,
+	num				CHAR,
+	possessorpers	CHAR,
+	possessornum	CHAR,
+	person			CHAR,
+	neclass			CHAR,
+	nesubclass		CHAR,
+	'case'			CHAR,
+	polite			CHAR,
+	mood			CHAR,
+	tense			CHAR,
+	punctenclose	CHAR
+);
 """)
 
 conn.commit()
@@ -129,7 +128,7 @@ cursor = conn.cursor()
 # Insert rows into the table
 for i, row in y.iterrows():
     cursor.execute("""
-        INSERT INTO sample_pos (word, PoS, category, type, person, gen, num, neclass, nesubclass, degree, possessorpers, possessornum, zcase, polite, mood, tense, non_positional)
+        INSERT INTO sample_pos (word, PoS, category, type, person, gen, num, neclass, nesubclass, degree, possessorpers, possessornum, 'case', polite, mood, tense, non_positional)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, (row['word'], row['PoS'], row['category'], row['type'], row['person'], row['gen'], row['num'], row['neclass'], row['nesubclass'], row['degree'], row['possessorpers'], row['possessornum'], row['case'], row['polite'], row['mood'], row['tense'], row['non_positional']))
 conn.commit()

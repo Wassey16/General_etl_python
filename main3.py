@@ -57,8 +57,8 @@ cur = conn.cursor()
 
 # Create table
 cur.execute('''CREATE TABLE word_pos (
-  id_word INTEGER REFERENCES word(id),
-  id_pos INTEGER REFERENCES sample_pos(id)
+  id_word INTEGER not null REFERENCES word(id) on delete on cascade ,
+  id_pos INTEGER not null REFERENCES sample_pos(id) on delete cascade
 );''')
 
 # Write the DataFrame to the table

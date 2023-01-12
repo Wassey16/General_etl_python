@@ -16,7 +16,7 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 # Create table
-cur.execute("CREATE TABLE word(id serial primary key, word varchar, pos varchar);")
+cur.execute("CREATE TABLE word(id serial not null primary key, word varchar(35) not null, pos varchar);")
 
 # Write the DataFrame to the table
 for _, row in x.iterrows():
