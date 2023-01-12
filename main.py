@@ -117,7 +117,7 @@ cursor.execute("""CREATE TABLE pos
 	polite			CHAR,
 	mood			CHAR,
 	tense			CHAR,
-	punctenclose	CHAR
+	non_positional	VARCHAR
 );
 """)
 
