@@ -1,4 +1,5 @@
-# spongling_etl
+# General_etl
+extracting, cleaning and storage of data of data using various Python libraries 
 
 ### Requirements:
 * install `python3` 
